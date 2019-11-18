@@ -1,0 +1,17 @@
+{
+    "name": "emanuelmart/dolar-arg",
+    "type": "library",
+    "description": "Cotización actual del dólar en Argentina - según el BNA",
+    "keywords": ["valor", "dolar", "argentina", "banco"],
+    "homepage": "https://github.com/EmanuelM/dolar-arg",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emanuel Martinez",
+            "email": "emanuelmartinezw@hotmail.com"
+        }
+    ],
+    "require-dev": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+}
