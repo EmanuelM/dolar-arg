@@ -12,6 +12,9 @@
         }
     ],
     "require-dev": {
-        "guzzlehttp/guzzle": "~6.0"
+        "fabpot/goutte": "^4.0"
     },
+    "autoload": {
+        "classmap": ["src"]
+    }
 }
