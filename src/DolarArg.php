@@ -1,22 +1,24 @@
 <?php
+	namespace DolarArg;
+
+	use DateTime;
+	use DateTimeZone;
 	use Goutte\Client;
+	use DolarArg\Dolar;
 
-	class DolarArg {
-		private $client;
+	class DolarArg
+	{
 		// valor obtenido del Banco de la Nación Argentina
-		private $www = "https://www.bna.com.ar";
-
-		/** Seteo de cliente Guzzle */
-		public function __construct() {
-			$this->client = new Client();
-		}
+		private static $www = "https://www.bna.com.ar";
 
 		/**
 		 * Obtener valor del dólar divisas al ultimo cierre
 		 * @return object Dolar
 		 */
-		private function dolarDivisas() {
-			$crawler = $this->client->request("GET", "{$this->www}/Cotizador/MonedasHistorico");
+		private function dolarDivisas()
+		{
+			$client = new Client();
+			$crawler = $client->request("GET", DolarArg::$www."/Cotizador/MonedasHistorico");
     		// damos inicio al Dolar
     		$dolar = new Dolar;
     		$dolar->cotizacion = "divisas";
@@ -50,7 +52,8 @@
 		 * @param  string $fecha_cotizacion - formato 'Y-m-d', por defecto hoy
 		 * @return object Dolar
 		 */
-		private function dolarBilletes(string $fecha_cotizacion = "now") {
+		private function dolarBilletes(string $fecha_cotizacion = "now")
+		{
 			// setear fecha de cotización
 			$fecha_cotizacion = new DateTime($fecha_cotizacion);
 			// seteamos filtros
@@ -62,7 +65,8 @@
 			];
 			$query = implode('&', $query);
 			// request al BNA
-			$crawler = $this->client->request("GET", "{$this->www}/Cotizador/HistoricoPrincipales?{$query}");
+			$client = new Client();
+			$crawler = $client->request("GET", DolarArg::$www."/Cotizador/HistoricoPrincipales?{$query}");
     		// damos inicio al Dolar
     		$dolar = new Dolar;
     		$dolar->cotizacion = "billetes";
@@ -95,20 +99,21 @@
 		 * @param  string $fecha_cotizacion - valor al ult. cierre de fecha de cotización
 		 * @return object/array
 		 */
-		public function valorDolar($cotizacion = "ambas", $fecha_cotizacion = "now") {
+		public function valorDolar($cotizacion = "ambas", $fecha_cotizacion = "now")
+		{
 			switch ($cotizacion) {
 				case "divisas":
-					return $this->dolarDivisas();
+					return DolarArg::dolarDivisas();
 					break;
 
 				case "billetes":
-					return $this->dolarBilletes($fecha_cotizacion);
+					return DolarArg::dolarBilletes($fecha_cotizacion);
 					break;
 
 				case "ambas":
 					return [
-						"divisas"  => $this->dolarDivisas(),
-						"billetes" => $this->dolarBilletes($fecha_cotizacion),
+						"divisas"  => DolarArg::dolarDivisas(),
+						"billetes" => DolarArg::dolarBilletes($fecha_cotizacion),
 					];
 					break;
 
