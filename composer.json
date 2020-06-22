@@ -1,19 +1,19 @@
 {
-    "name": "emanuelmart/dolar-arg",
-    "description": "Cotización actual del dólar en Argentina - según el BNA",
-    "authors": [
-        {
-            "name": "Emanuel Martinez",
-            "email": "emanuelmartinezw@hotmail.com"
-        }
-    ],
-    "license": "MIT",
-    "require": {
-        "fabpot/goutte": "^4.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "DolarArg\\": "src"
-        }
+  "name": "emanuelmart/dolar-arg",
+  "description": "Cotización actual del dólar en Argentina",
+  "authors": [
+    {
+      "name": "Emanuel Martinez",
+    	"email": "emanuelmartinezw@hotmail.com"
     }
+  ],
+  "license": "MIT",
+  "require": {
+    "guzzlehttp/guzzle": "^6.5"
+  },
+  "autoload": {
+		"psr-4": {
+    	"DolarArg\\": "src"
+  	}
+  }
 }

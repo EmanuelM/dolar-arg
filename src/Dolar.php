@@ -3,9 +3,26 @@
 
 	class Dolar
 	{
-		public $compra; // Float
-		public $venta; // Float
+		public $tipo; // string (oficial, blue, ccl)
+		public $compra; // float
+		public $venta; // float
+		public $variacion; // float
 		public $fecha; // DateTime
-		public $cotizacion; // String
+
+		/**
+		 * Calcular valor dólar solidario
+		 * Oficial + Impuesto PAIS (30%)
+		 * @return float
+		 */
+		public function solidario()
+		{
+			if ($this->tipo == "oficial")
+			{
+				return (($this->venta * 0.3) + $this->venta);
+			}
+			else {
+				return $this->venta;
+			}
+		}
 	}
 ?>

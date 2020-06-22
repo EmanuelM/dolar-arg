@@ -1,10 +1,10 @@
 # DolarArg
 
-Cotización del dólar según página del Banco de la Nación Argentina.
+Cotización del dólar según página [LaNación](https://www.lanacion.com.ar/dolar-hoy)/[InvertirOnline](https://www.invertironline.com/)
 
 ## Instalación
 
-Desde [Composer](https://getcomposer.org/)
+Mediante [Composer](https://getcomposer.org/)
 
 ```bash
 composer require "emanuelmart/dolar-arg:*"
@@ -17,17 +17,16 @@ require(__DIR__.'/vendor/autoload.php'); # composer autoload
 
 use DolarArg\DolarArg
 
-# Valor del dólar en ambos formatos
-$usd = DolarArg::valorDolar();
+# Valor del dólar oficial según BNA
+$oficial = DolarArg::oficial();
+$oficial->solidario(); # sumar impuesto PAIS +30%
 
-# Valor del dólar divisa
-$usd = DolarArg::valorDolar('divisas');
+# Valor del dólar contado con liquidación
+$ccl = DolarArg::ccl();
 
-# Valor del dólar billete
-$usd = DolarArg::valorDolar('billetes');
+# Valor del dólar blue
+$blue = DolarArg::blue();
 
-# Valor del dólar billete en X fecha, de formato YYYY-MM-DD
-$usd = DolarArg::valorDolar('billetes', '2020-01-01');
 ```
 
 ## Contribuciones
